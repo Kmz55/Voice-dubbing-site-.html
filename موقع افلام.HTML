@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دبلجة الفيديو التلقائية</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        input[type="file"], select {
+            padding: 12px;
+            font-size: 16px;
+            margin: 10px;
+            width: 100%;
+            max-width: 350px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        button {
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .video-container {
+            margin-top: 30px;
+            display: none;
+        }
+        video {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 8px;
+        }
+        .alert {
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>دبلجة الفيديو التلقائية إلى أي لغة</h1>
+
+        <input type="file" id="videoFile" accept="video/*" onchange="previewVideo()">
+        
+        <select id="languageSelect">
+            <option value="ar">العربية</option>
+            <option value="en">الإنجليزية</option>
+            <option value="fr">الفرنسية</option>
+            <option value="es">الإسبانية</option>
+            <option value="de">الألمانية</option>
+            <option value="it">الإيطالية</option>
+        </select>
+
+        <button onclick="processVideo()">دبلجة الفيديو</button>
+
+        <div class="alert" id="alertMessage"></div>
+
+        <div class="video-container" id="videoContainer">
+            <video id="videoPlayer" controls>
+                <source id="videoSource" src="" type="video/mp4">
+                متصفحك لا يدعم تشغيل الفيديو.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        function previewVideo() {
+            const videoFile = document.getElementById('videoFile').files[0];
+            if (videoFile) {
+                const videoURL = URL.createObjectURL(videoFile);
+                document.getElementById('videoSource').src = videoURL;
+                document.getElementById('videoPlayer').load();
+                document.getElementById('videoContainer').style.display = 'block';
+            }
+        }
+
+        function processVideo() {
+            const videoFile = document.getElementById('videoFile').files[0];
+            const language = document.getElementById('languageSelect').value;
+            const alertMessage = document.getElementById('alertMessage');
+
+            if (!videoFile) {
+                alertMessage.style.display = 'block';
+                alertMessage.textContent = 'يرجى رفع فيديو أولاً.';
+                return;
+            }
+
+            alertMessage.style.display = 'none';
+
+            // هنا سيكون تكامل الذكاء الصناعي لمعالجة الفيديو والدبلجة
+
+            alert('تم تحميل الفيديو بنجاح! سيتم معالجة الترجمة إلى اللغة: ' + language);
+        }
+    </script>
+
+</body>
+</html>
